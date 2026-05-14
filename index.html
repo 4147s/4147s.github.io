@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Studio - Channel Status and Features</title>
+    <style>
+        :root {
+            --yt-blue: #065fd4;
+            --yt-gray: #606060;
+            --yt-border: #d3d3d3;
+            --yt-success: #2ba640;
+            --bg-color: #f1f1f1;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Overlay Login */
+        #auth-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .btn-login {
+            background-color: var(--yt-blue);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Main Container */
+        .wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid #e2e2e2;
+            padding: 30px;
+            display: none; /* Muncul setelah login */
+        }
+
+        .header-title {
+            font-size: 26px;
+            font-weight: 400;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        /* Bagian Pelanggaran (Gambar 2) */
+        .violation-section {
+            margin-bottom: 40px;
+        }
+
+        .violation-group {
+            margin-bottom: 20px;
+        }
+
+        .violation-group h2 {
+            font-size: 20px;
+            font-weight: 400;
+            margin: 0 0 5px 0;
+        }
+
+        .violation-group p {
+            color: var(--yt-gray);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Grid 12 Fitur (Gambar 1) */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            border: 1px solid var(--yt-border);
+            padding: 15px;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .f-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .f-desc {
+            font-size: 12px;
+            color: var(--yt-gray);
+            line-height: 1.4;
+        }
+
+        .f-status-bar {
+            height: 4px;
+            background: var(--yt-success);
+            margin-top: 15px;
+        }
+
+        .f-status-text {
+            font-size: 11px;
+            font-weight: bold;
+            margin-top: 6px;
+            color: #555;
+        }
+
+        .disabled-bar { background: #ccc; }
+    </style>
+</head>
+<body>
+
+    <div id="auth-overlay">
+        <h2 style="font-weight: normal; margin-bottom: 20px;">Akses YouTube Studio</h2>
+        <p style="color: #666; margin-bottom: 30px;">Anda harus login untuk melihat status fitur (nv=1)</p>
+        <button class="btn-login" onclick="masukKeStudio()">LOGIN KE AKUN GOOGLE</button>
+    </div>
+
+    <div class="wrapper" id="studio-content">
+        <div class="header-title">Channel violations</div>
+
+        <div class="violation-section">
+            <div class="violation-group">
+                <h2>0 of 3 Copyright strikes</h2>
+                <p>Your copyright violations are listed below.</p>
+            </div>
+            <div class="violation-group">
+                <h2>0 of 3 Community Guidelines</h2>
+                <p>You have 0 Community Guidelines strikes.</p>
+            </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #eee;">
+
+        <div class="features-grid">
+            <div class="feature-item">
+                <div><div class="f-title">Uploading</div><div class="f-desc">You can upload!</div></div>
+                <div><div class="f-status-bar"></div><div class="f-status-text">Enabled</div></div>
+            </div>
+            <div class="feature-item">
+                <div><div class="f-title">Monetization</div><div class="f-desc">Become a partner through monetization.</div></div>
+                <div><div class="f-status-bar"></div><div class="f-status-text">Enabled</div></div>
+            </div>
+            <div class="feature-item">
+                <div><div class="f-title">Live streaming</div><div class="f-desc">You can live stream.</div></div>
+                <div><div class="f-status-bar"></div><div class="f-status-text">Enabled</div></div>
+            </div>
+            <div class="feature-item">
+                <div><div class="f-title">Embed live streams</div><div class="f-desc">You can embed live streams.</div></div>
+                <div><div class="f-status-bar"></div><div class="f-status-text">Enabled</div></div>
+            </div>
+            <div class="feature-item">
+                <div><div class="f-title">Longer videos</div><div class="f-desc">Upload videos longer than 15 mins.</div></div>
+                <div><div class="f-status-bar"></div><div class="f-status-text">Enabled</div></div>
+            </div>
+            <div class="feature-item">
+                <div><div class="f-title">Unlisted and private videos</div><div class="f-desc">Control video visibility.</div></div>
+                <div><div class="f-status-bar"></div><div class="f-status-text">Enabled</div></div>
+            </div>
+            <div class="feature-item">
+                <div><div class="f-title">Custom thumbnails</div><div class="f-desc">Upload your own thumbnails.</div></div>
+                <div><div class="f-status-bar"></div><div class="f-status-text">Enabled</div></div>
+            </div>
+            <div class="feature-item">
+                <div><div class="f-title">External annotations</div><div class="f-desc">Link to external websites.</div></div>
+                <div><div class="f-status-bar"></div><div class="f-status-text">Enabled</div></div>
+            </div>
+            <div class="feature-item">
+                <div><div class="f-title">Super Chat</div><div class="f-desc">Let fans support your stream.</div></div>
+                <div><div class="f-status-bar"></div><div class="f-status-text">Enabled</div></div>
+            </div>
+            <div class="feature-item">
+                <div><div class="f-title">Custom URL</div><div class="f-desc">Claim a unique URL for your channel.</div></div>
+                <div><div class="f-status-bar"></div><div class="f-status-text">Enabled</div></div>
+            </div>
+            <div class="feature-item">
+                <div><div class="f-title">Content ID appeals</div><div class="f-desc">Appeal rejected Content ID disputes.</div></div>
+                <div><div class="f-status-bar"></div><div class="f-status-text">Enabled</div></div>
+            </div>
+            <div class="feature-item">
+                <div><div class="f-title">Channel memberships</div><div class="f-desc">Available only for eligible channels.</div></div>
+                <div><div class="f-status-bar disabled-bar"></div><div class="f-status-text" style="color: #999;">Ineligible</div></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function masukKeStudio() {
+            // Simulasi Login dan Pengalihan NV=1
+            document.getElementById('auth-overlay').style.display = 'none';
+            document.getElementById('studio-content').style.display = 'block';
+            console.log("Redirecting to: https://www.youtube.com/features?nv=1");
+        }
+    </script>
+</body>
+                                                 </html>

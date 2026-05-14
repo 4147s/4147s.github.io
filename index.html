@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube - Status and Features</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            background-color: #f1f1f1;
+            font-family: 'Roboto', arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Header / Masthead Simulator */
+        header {
+            background: #fff;
+            height: 50px;
+            border-bottom: 1px solid #e8e8e8;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 20px auto;
+            background: #fff;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background: #ccc;
+            margin-right: 15px;
+            border-radius: 2px;
+        }
+
+        .channel-info h2 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .verified-badge {
+            color: #666;
+            font-size: 13px;
+            margin-top: 5px;
+            display: block;
+        }
+
+        /* Status Meters */
+        .status-overview {
+            display: flex;
+            gap: 40px;
+            padding: 30px 0;
+        }
+
+        .status-box {
+            flex: 1;
+        }
+
+        .status-box h3 {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .meter-container {
+            position: relative;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .meter-line {
+            height: 8px;
+            width: 100%;
+            background: #e2e2e2;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .meter-fill {
+            position: absolute;
+            height: 100%;
+            width: 100%; /* Good standing */
+            background: #2ba640;
+            border-radius: 4px;
+        }
+
+        .meter-faces {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            position: absolute;
+            top: 15px;
+        }
+
+        .face { font-size: 18px; filter: grayscale(1); opacity: 0.5; }
+        .face.active { filter: grayscale(0); opacity: 1; }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1px;
+            background: #e2e2e2; /* Creating border effect */
+            border: 1px solid #e2e2e2;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 140px;
+        }
+
+        .feature-card h4 {
+            margin: 0 0 8px 0;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .feature-card p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .feature-card a {
+            color: #167ac6;
+            text-decoration: none;
+        }
+
+        .feature-status {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #f9f9f9;
+            font-size: 11px;
+            font-weight: bold;
+            color: #2ba640;
+            text-transform: capitalize;
+        }
+
+        .status-disabled { color: #999; }
+        .status-ineligible { color: #cc0000; }
+
+        .btn-enable {
+            float: right;
+            background: #f8f8f8;
+            border: 1px solid #d3d3d3;
+            padding: 3px 10px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" width="80" alt="Logo">
+</header>
+
+<div class="container">
+    <div class="profile-section">
+        <div class="avatar">
+            <img src="https://via.placeholder.com/80" alt="User">
+        </div>
+        <div class="channel-info">
+            <h2>Tom Leeman</h2>
+            <span class="verified-badge">✓ Partner Verified</span>
+        </div>
+    </div>
+
+    <div class="status-overview">
+        <div class="status-box">
+            <h3>Copyright Status</h3>
+            <div class="meter-container">
+                <div class="meter-line"><div class="meter-fill"></div></div>
+                <div class="meter-faces">
+                    <span>☹</span><span>😐</span><span>😐</span><span class="active">😊</span>
+                </div>
+            </div>
+            <p style="font-size: 12px;">You have 0 copyright strikes.</p>
+        </div>
+
+        <div class="status-box">
+            <h3>Community Guidelines Status</h3>
+            <div class="meter-container">
+                <div class="meter-line"><div class="meter-fill"></div></div>
+                <div class="meter-faces">
+                    <span>☹</span><span>😐</span><span>😐</span><span class="active">😊</span>
+                </div>
+            </div>
+            <p style="font-size: 12px;">You have 0 community guidelines strikes.</p>
+        </div>
+    </div>
+
+    <div class="features-grid" id="features">
+        <div class="feature-card">
+            <div>
+                <h4>Uploading</h4>
+                <p>You can upload! <a href="#">Learn more</a></p>
+            </div>
+            <div class="feature-status">Enabled</div>
+        </div>
+
+        <div class="feature-card">
+            <div>
+                <h4>Monetization</h4>
+                <p>Become a partner through monetization by displaying ads on your videos.</p>
+            </div>
+            <div class="feature-status">Enabled</div>
+        </div>
+
+        <div class="feature-card">
+            <div>
+                <h4>Live streaming</h4>
+                <p>You can live stream. <a href="#">Learn more</a></p>
+            </div>
+            <div class="feature-status">Enabled</div>
+        </div>
+
+        <div class="feature-card">
+            <div>
+                <h4>Longer videos</h4>
+                <p>You can now upload videos longer than 15 minutes! <a href="#">Learn more</a></p>
+            </div>
+            <div class="feature-status">Enabled</div>
+        </div>
+
+        <div class="feature-card">
+            <div>
+                <h4>Custom thumbnails</h4>
+                <p>Choose your video's thumbnail by uploading your own. <a href="#">Learn more</a></p>
+            </div>
+            <div class="feature-status">Enabled</div>
+        </div>
+
+        <div class="feature-card">
+            <div>
+                <h4>Super Chat</h4>
+                <p>Lets your viewers send Super Chats.</p>
+            </div>
+            <div class="feature-status">
+                Eligible <button class="btn-enable">Enable</button>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div>
+                <h4>Channel memberships</h4>
+                <p>The ability to offer memberships isn't yet available for your channel.</p>
+            </div>
+            <div class="feature-status status-disabled">Ineligible</div>
+        </div>
+    </div>
+</div>
+
+</body>
+              </html>

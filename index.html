@@ -1,283 +1,286 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube - Status and Features</title>
+    <title>YouTube - Status dan Fitur</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         /* Global Styles */
         body {
-            background-color: #f1f1f1;
+            background-color: #f9f9f9;
             font-family: 'Roboto', arial, sans-serif;
             margin: 0;
             padding: 0;
             color: #333;
         }
 
-        /* Header / Masthead Simulator */
         header {
             background: #fff;
-            height: 50px;
+            height: 56px;
             border-bottom: 1px solid #e8e8e8;
             display: flex;
             align-items: center;
-            padding: 0 20px;
+            padding: 0 24px;
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
         .container {
-            max-width: 1050px;
-            margin: 20px auto;
+            max-width: 1000px;
+            margin: 24px auto;
             background: #fff;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-            padding: 20px;
+            border: 1px solid #e0e0e0;
+            padding: 24px;
         }
 
         /* Profile Section */
         .profile-section {
             display: flex;
             align-items: center;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #eeeeee;
         }
 
         .avatar {
-            width: 80px;
-            height: 80px;
-            background: #ccc;
-            margin-right: 15px;
-            border-radius: 2px;
+            width: 70px;
+            height: 70px;
+            background: #4a90e2;
+            margin-right: 20px;
+            border-radius: 50%; /* Gaya profil lebih modern 2020 */
+            overflow: hidden;
         }
 
         .channel-info h2 {
             margin: 0;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 500;
         }
 
         .verified-badge {
-            color: #666;
+            color: #606060;
             font-size: 13px;
-            margin-top: 5px;
+            margin-top: 4px;
             display: block;
         }
 
-        /* Status Meters */
+        /* Status Meters - 2020 Style */
         .status-overview {
             display: flex;
-            gap: 40px;
+            gap: 20px;
             padding: 30px 0;
         }
 
         .status-box {
             flex: 1;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
         }
 
         .status-box h3 {
             font-size: 14px;
             font-weight: 500;
+            margin: 0 0 15px 0;
+            color: #0d0d0d;
+        }
+
+        .strike-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 15px;
         }
 
-        .meter-container {
+        .strike-step {
+            flex: 1;
+            text-align: center;
+            font-size: 11px;
+            color: #606060;
             position: relative;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
+            padding-bottom: 15px;
         }
 
-        .meter-line {
-            height: 8px;
-            width: 100%;
-            background: #e2e2e2;
-            border-radius: 4px;
-            position: relative;
-        }
-
-        .meter-fill {
+        /* Garis penghubung antar step */
+        .strike-step::after {
+            content: "";
             position: absolute;
-            height: 100%;
-            width: 100%; /* Good standing */
-            background: #2ba640;
-            border-radius: 4px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #e0e0e0;
         }
 
-        .meter-faces {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            position: absolute;
-            top: 15px;
+        /* Indikator aktif (0 dari 3) */
+        .strike-step.active::after {
+            background: #2ba640; /* Hijau jika aman */
         }
 
-        .face { font-size: 18px; filter: grayscale(1); opacity: 0.5; }
-        .face.active { filter: grayscale(0); opacity: 1; }
+        .strike-step.warning::after {
+            background: #f44336; /* Merah jika ada strike */
+        }
+
+        .strike-label {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+        }
 
         /* Features Grid */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 1px;
-            background: #e2e2e2; /* Creating border effect */
-            border: 1px solid #e2e2e2;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
         }
 
         .feature-card {
             background: #fff;
-            padding: 15px;
+            padding: 16px;
+            border: 1px solid #e0e0e0;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 140px;
+            min-height: 120px;
         }
 
         .feature-card h4 {
             margin: 0 0 8px 0;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 500;
         }
 
         .feature-card p {
             font-size: 12px;
-            color: #666;
+            color: #606060;
             line-height: 1.4;
             margin: 0;
         }
 
-        .feature-card a {
-            color: #167ac6;
-            text-decoration: none;
-        }
-
-        .feature-status {
+        .status-indicator {
             margin-top: 15px;
-            padding-top: 10px;
-            border-top: 1px solid #f9f9f9;
-            font-size: 11px;
-            font-weight: bold;
-            color: #2ba640;
-            text-transform: capitalize;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 500;
         }
 
-        .status-disabled { color: #999; }
-        .status-ineligible { color: #cc0000; }
+        .enabled { color: #2ba640; }
+        .disabled { color: #909090; }
+        .ineligible { color: #d93025; }
 
-        .btn-enable {
-            float: right;
-            background: #f8f8f8;
-            border: 1px solid #d3d3d3;
-            padding: 3px 10px;
-            border-radius: 2px;
+        .btn-action {
+            color: #065fd4;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 13px;
             cursor: pointer;
-            font-size: 11px;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" width="80" alt="Logo">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" width="90" alt="YouTube Logo">
 </header>
 
 <div class="container">
     <div class="profile-section">
         <div class="avatar">
-            <img src="https://via.placeholder.com/80" alt="User">
+            <img src="https://via.placeholder.com/70/4a90e2/ffffff?text=User" alt="User">
         </div>
         <div class="channel-info">
-            <h2>Tom Leeman</h2>
-            <span class="verified-badge">✓ Partner Verified</span>
+            <h2>Nama Channel Anda</h2>
+            <span class="verified-badge">Status akun: Bagus</span>
         </div>
     </div>
 
     <div class="status-overview">
         <div class="status-box">
-            <h3>Copyright Status</h3>
-            <div class="meter-container">
-                <div class="meter-line"><div class="meter-fill"></div></div>
-                <div class="meter-faces">
-                    <span>☹</span><span>😐</span><span>😐</span><span class="active">😊</span>
+            <h3>Status Hak Cipta</h3>
+            <div class="strike-container">
+                <div class="strike-step active">
+                    <span class="strike-label">0 dari 3</span>
+                </div>
+                <div class="strike-step">
+                    <span class="strike-label">1 dari 3</span>
+                </div>
+                <div class="strike-step">
+                    <span class="strike-label">2 dari 3</span>
+                </div>
+                <div class="strike-step">
+                    <span class="strike-label">3 dari 3</span>
                 </div>
             </div>
-            <p style="font-size: 12px;">You have 0 copyright strikes.</p>
+            <p style="font-size: 12px; color: #606060;">Anda memiliki 0 teguran hak cipta.</p>
         </div>
 
         <div class="status-box">
-            <h3>Community Guidelines Status</h3>
-            <div class="meter-container">
-                <div class="meter-line"><div class="meter-fill"></div></div>
-                <div class="meter-faces">
-                    <span>☹</span><span>😐</span><span>😐</span><span class="active">😊</span>
+            <h3>Status Pedoman Komunitas</h3>
+            <div class="strike-container">
+                <div class="strike-step active">
+                    <span class="strike-label">0 dari 3</span>
+                </div>
+                <div class="strike-step">
+                    <span class="strike-label">1 dari 3</span>
+                </div>
+                <div class="strike-step">
+                    <span class="strike-label">2 dari 3</span>
+                </div>
+                <div class="strike-step">
+                    <span class="strike-label">3 dari 3</span>
                 </div>
             </div>
-            <p style="font-size: 12px;">You have 0 community guidelines strikes.</p>
+            <p style="font-size: 12px; color: #606060;">Anda memiliki 0 teguran pedoman komunitas.</p>
         </div>
     </div>
 
-    <div class="features-grid" id="features">
+    <div class="features-grid">
         <div class="feature-card">
             <div>
-                <h4>Uploading</h4>
-                <p>You can upload! <a href="#">Learn more</a></p>
+                <h4>Mengunggah</h4>
+                <p>Anda dapat mengunggah video ke channel Anda.</p>
             </div>
-            <div class="feature-status">Enabled</div>
+            <div class="status-indicator">
+                <span class="enabled">Diaktifkan</span>
+            </div>
         </div>
 
         <div class="feature-card">
             <div>
-                <h4>Monetization</h4>
-                <p>Become a partner through monetization by displaying ads on your videos.</p>
+                <h4>Monetisasi</h4>
+                <p>Gunakan iklan untuk menghasilkan uang dari video Anda.</p>
             </div>
-            <div class="feature-status">Enabled</div>
+            <div class="status-indicator">
+                <span class="disabled">Tidak Diaktifkan</span>
+                <a class="btn-action">Pelajari lebih lanjut</a>
+            </div>
         </div>
 
         <div class="feature-card">
             <div>
                 <h4>Live streaming</h4>
-                <p>You can live stream. <a href="#">Learn more</a></p>
+                <p>Siarkan konten Anda secara langsung kepada penonton.</p>
             </div>
-            <div class="feature-status">Enabled</div>
-        </div>
-
-        <div class="feature-card">
-            <div>
-                <h4>Longer videos</h4>
-                <p>You can now upload videos longer than 15 minutes! <a href="#">Learn more</a></p>
-            </div>
-            <div class="feature-status">Enabled</div>
-        </div>
-
-        <div class="feature-card">
-            <div>
-                <h4>Custom thumbnails</h4>
-                <p>Choose your video's thumbnail by uploading your own. <a href="#">Learn more</a></p>
-            </div>
-            <div class="feature-status">Enabled</div>
-        </div>
-
-        <div class="feature-card">
-            <div>
-                <h4>Super Chat</h4>
-                <p>Lets your viewers send Super Chats.</p>
-            </div>
-            <div class="feature-status">
-                Eligible <button class="btn-enable">Enable</button>
+            <div class="status-indicator">
+                <span class="enabled">Diaktifkan</span>
             </div>
         </div>
 
         <div class="feature-card">
             <div>
-                <h4>Channel memberships</h4>
-                <p>The ability to offer memberships isn't yet available for your channel.</p>
+                <h4>Thumbnail kustom</h4>
+                <p>Upload gambar buatan Anda sendiri untuk thumbnail video.</p>
             </div>
-            <div class="feature-status status-disabled">Ineligible</div>
+            <div class="status-indicator">
+                <span class="enabled">Diaktifkan</span>
+            </div>
         </div>
     </div>
 </div>
 
 </body>
-              </html>
+</html>

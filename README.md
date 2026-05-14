@@ -1,21 +1,43 @@
-YouTube Status and Features Restorer
+# YouTube Legacy Status and Features Interface
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Platform: Web](https://img.shields.io/badge/Platform-Web-blue.svg)](https://4147s.github.io/features?nv=1)
+![License](https://img.shields.io/github/license/4147s/4147s.github.io)
+![GitHub top language](https://img.shields.io/github/languages/top/4147s/4147s.github.io)
 
-A specialized tool designed to assist users in managing and navigating YouTube channel status and feature accessibility settings. 
+This repository hosts a high-fidelity recreation of the **YouTube Creator Studio: Status and Features** page as it appeared around 2016-2017. This project is part of a UI/UX archival effort to document and preserve the evolution of digital dashboards.
 
-**Live Link:** [4147s.github.io/features?nv=1](https://4147s.github.io/features?nv=1)
+## 🔗 Live Demo
+Access the interface here: [4147s.github.io/app/index.html](https://4147s.github.io/app/index.html)
 
 ---
 
-## Features
+## 🛠️ Technical Specifications
 
-* **Feature Management:** Quickly access hidden or deep-linked YouTube feature settings.
-* **Status Check:** Review the standing and monetization eligibility of your channel.
-* **Responsive Interface:** Fully optimized for both desktop and mobile browser environments.
-* **One-Click Navigation:** Streamlined URL parameters to jump straight to specific verification pages.
+This project is built using pure front-end technologies to ensure maximum compatibility and speed:
 
+* **HTML5**: Structured with semantic elements to mimic the original document outline.
+* **CSS3 Flexbox & Grid**: Used to handle the complex feature tile layout and the responsive status meters.
+* **Google Fonts**: Integration of the 'Roboto' font family, which was the standard for Google’s Material Design transition.
+* **Scalable Vector Graphics (SVG)**: Used for iconography to maintain clarity at any zoom level.
+
+## 📋 Features Implemented
+
+1.  **Account Status Overview**:
+    * Partner Verification Badge.
+    * Copyright Status Meter (with emotive icons).
+    * Community Guidelines Status Meter.
+2.  **Feature Capability Grid**:
+    * Dynamic cards for Uploading, Monetization, and Live Streaming.
+    * Conditional styling for 'Enabled', 'Eligible', and 'Ineligible' states.
+    * Standard YouTube-style buttons and links.
+
+## 📂 Repository Structure
+
+```text
+├── app/
+│   ├── index.html        # Main entry point (The Dashboard)
+│   └── assets/           # Future expansion for CSS/JS files
+├── README.md             # Documentation
+└── LICENSE               # MIT License
 ## Getting Started
 
 ### Prerequisites
